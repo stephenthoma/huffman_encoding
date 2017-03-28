@@ -8,7 +8,7 @@ class PriorityQueue:
 
     def size(self):
         return len(self.queue)
-    
+
     def parent(self, index):
         return index / 2
 
