@@ -6,6 +6,9 @@ class PriorityQueue:
     def __init__(self):
         self.queue = list()
 
+    def size(self):
+        return len(self.queue)
+    
     def parent(self, index):
         return index / 2
 
@@ -72,10 +75,10 @@ class HuffmanEncode:
 
         for val in freqs:
             pq.insert(val)
-        while len(pq.queue) > 1:
+        while pq.size() > 1:
             l, r = pq.extract_min(), pq.extract_min()
             node = huffmanNode(l, r)
-            pq.insert((l[0]+r[0], node))
+            pq.insert((l[0] + r[0], node))
 
         return pq.queue[0]
 
@@ -87,9 +90,9 @@ class HuffmanEncode:
             self.codebook[node] = code
             return
 
-        code+='0'
+        code += '0'
         self.make_codes(node.left, code)
-        code = code[:-1]+'1'
+        code = code[:-1] + '1'
         self.make_codes(node.right, code)
 
     def encode_string(self, string):
